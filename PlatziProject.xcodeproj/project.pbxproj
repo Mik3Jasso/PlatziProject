@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		AD98EB792C3EF03C006F96EE /* PlatziProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EB782C3EF03C006F96EE /* PlatziProjectApp.swift */; };
-		AD98EB7B2C3EF03C006F96EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EB7A2C3EF03C006F96EE /* ContentView.swift */; };
+		AD98EB7B2C3EF03C006F96EE /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EB7A2C3EF03C006F96EE /* HomeFeedView.swift */; };
 		AD98EB7D2C3EF03E006F96EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD98EB7C2C3EF03E006F96EE /* Assets.xcassets */; };
 		AD98EB802C3EF03E006F96EE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD98EB7F2C3EF03E006F96EE /* Preview Assets.xcassets */; };
 		AD98EB8A2C3EF03E006F96EE /* PlatziProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EB892C3EF03E006F96EE /* PlatziProjectTests.swift */; };
 		AD98EB942C3EF03E006F96EE /* PlatziProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EB932C3EF03E006F96EE /* PlatziProjectUITests.swift */; };
 		AD98EB962C3EF03E006F96EE /* PlatziProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EB952C3EF03E006F96EE /* PlatziProjectUITestsLaunchTests.swift */; };
+		AD98EBA52C3EFC2D006F96EE /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBA42C3EFC2D006F96EE /* Videos.swift */; };
+		AD98EBA72C3EFD7E006F96EE /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBA62C3EFD7E006F96EE /* Network.swift */; };
+		AD98EBAA2C3F1DD4006F96EE /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AD98EBA92C3F1DD4006F96EE /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		AD98EB752C3EF03C006F96EE /* PlatziProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlatziProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD98EB782C3EF03C006F96EE /* PlatziProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatziProjectApp.swift; sourceTree = "<group>"; };
-		AD98EB7A2C3EF03C006F96EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AD98EB7A2C3EF03C006F96EE /* HomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
 		AD98EB7C2C3EF03E006F96EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD98EB7F2C3EF03E006F96EE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AD98EB852C3EF03E006F96EE /* PlatziProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlatziProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +47,8 @@
 		AD98EB8F2C3EF03E006F96EE /* PlatziProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlatziProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD98EB932C3EF03E006F96EE /* PlatziProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatziProjectUITests.swift; sourceTree = "<group>"; };
 		AD98EB952C3EF03E006F96EE /* PlatziProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatziProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AD98EBA42C3EFC2D006F96EE /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
+		AD98EBA62C3EFD7E006F96EE /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD98EBAA2C3F1DD4006F96EE /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,8 +100,8 @@
 		AD98EB772C3EF03C006F96EE /* PlatziProject */ = {
 			isa = PBXGroup;
 			children = (
+				AD98EBA22C3EF74E006F96EE /* Video */,
 				AD98EB782C3EF03C006F96EE /* PlatziProjectApp.swift */,
-				AD98EB7A2C3EF03C006F96EE /* ContentView.swift */,
 				AD98EB7C2C3EF03E006F96EE /* Assets.xcassets */,
 				AD98EB7E2C3EF03E006F96EE /* Preview Content */,
 			);
@@ -127,6 +133,24 @@
 			path = PlatziProjectUITests;
 			sourceTree = "<group>";
 		};
+		AD98EBA22C3EF74E006F96EE /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				AD98EBA32C3EFBC3006F96EE /* Entities */,
+				AD98EB7A2C3EF03C006F96EE /* HomeFeedView.swift */,
+				AD98EBA62C3EFD7E006F96EE /* Network.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		AD98EBA32C3EFBC3006F96EE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				AD98EBA42C3EFC2D006F96EE /* Videos.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +167,9 @@
 			dependencies = (
 			);
 			name = PlatziProject;
+			packageProductDependencies = (
+				AD98EBA92C3F1DD4006F96EE /* SDWebImageSwiftUI */,
+			);
 			productName = PlatziProject;
 			productReference = AD98EB752C3EF03C006F96EE /* PlatziProject.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +242,9 @@
 				Base,
 			);
 			mainGroup = AD98EB6C2C3EF03C006F96EE;
+			packageReferences = (
+				AD98EBA82C3F1DD4006F96EE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = AD98EB762C3EF03C006F96EE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,7 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD98EB7B2C3EF03C006F96EE /* ContentView.swift in Sources */,
+				AD98EBA52C3EFC2D006F96EE /* Videos.swift in Sources */,
+				AD98EB7B2C3EF03C006F96EE /* HomeFeedView.swift in Sources */,
+				AD98EBA72C3EFD7E006F96EE /* Network.swift in Sources */,
 				AD98EB792C3EF03C006F96EE /* PlatziProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,6 +620,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AD98EBA82C3F1DD4006F96EE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD98EBA92C3F1DD4006F96EE /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD98EBA82C3F1DD4006F96EE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AD98EB6D2C3EF03C006F96EE /* Project object */;
 }

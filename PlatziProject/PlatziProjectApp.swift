@@ -11,7 +11,7 @@ import SwiftUI
 struct PlatziProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeFeedView()
         }
     }
 }
