@@ -47,32 +47,12 @@ struct HomeFeedView: View {
             }
         }
         List(videos?.videos.first?.videoFiles ?? [], id: \.id) { video in
-            VStack(alignment: .leading) {
-                VStack(alignment: .leading) {
-                    Text("Name")
-                        .font(.headline)
-                    Text("Artist:")
-                        .font(.subheadline)
-                    Text("Duration:")
-                        .font(.subheadline)
-                    Text("Style:")
-                        .font(.subheadline)
-                }
-            }
-            .padding(.vertical, 8)
+           VideoItem(video: video)
         }
         .navigationTitle("Video List")
     }
 }
 
-struct VideoItem: View {
-    var body: some View {
-        VStack {
-            
-        }
-        .padding()
-    }
-}
 
 
 

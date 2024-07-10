@@ -31,6 +31,15 @@ class Network {
         return videos
     }
     
+    func getVideo(_ id : String) async throws -> Video {
+        guard let url = URL(string: "\(baseURL)/videos/\(id)") else {
+            throw HTTPRequestError.invalidURL
+        }
+
+        let video: Video = try await performGETRequest(url: url)
+        return video
+    }
+    
     func performGETRequest<T>(url: URL) async throws -> T where T: Decodable {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
