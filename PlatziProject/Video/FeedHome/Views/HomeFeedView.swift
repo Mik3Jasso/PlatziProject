@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct HomeFeedView: View {
-    @State var videos: Videos? = nil
+    @State var videos: [Video] = []
     @State var searchText = ""
     
     var body: some View {
@@ -25,7 +25,7 @@ struct HomeFeedView: View {
                         do {
                             let response = try await Network().fetchData(searchText)
                             print("Response: \(response)")
-                            videos = response
+                            videos = response.videos
                         } catch HTTPRequestError.invalidData {
                             print("Error: Invalid Data")
                         } catch HTTPRequestError.invalidURL {
@@ -35,21 +35,31 @@ struct HomeFeedView: View {
                         }
                     }
                 }
-        }.onAppear() {
+            NavigationStack {
+                List(videos, id:  \.id) { video in
+                    ZStack {
+                        VideoItem(video: video)
+                        NavigationLink(destination: {}) {
+                        }
+                        .opacity(0)
+                    }
+                    Spacer()
+                }
+                .listStyle(.plain)
+            }
+        }
+        .background(.white)
+        .onAppear() {
             Task{
                 do {
                     let response = try await Network().fetchPopularVideos()
                     print("Response: \(response)")
-                    videos = response
+                    videos = response.videos
                 } catch {
                     print("Error")
                 }
             }
         }
-        List(videos?.videos.first?.videoFiles ?? [], id: \.id) { video in
-           VideoItem(video: video)
-        }
-        .navigationTitle("Video List")
     }
 }
 

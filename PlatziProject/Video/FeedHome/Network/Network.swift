@@ -13,7 +13,7 @@ class Network {
     let authToken = "0uRdtEt1OW33GuqX4IpTmp6sPLLoTcQYt043Zl3FTDqRh0qf4XNRcjFL"
 
     func fetchData(_ value: String) async throws -> Videos {
-        guard let url = URL(string: "\(baseURL)/search?query=\(value)&per_page=1") else {
+        guard let url = URL(string: "\(baseURL)/search?query=\(value)&per_page=10") else {
             throw HTTPRequestError.invalidURL
         }
 
@@ -23,7 +23,7 @@ class Network {
   
     func fetchPopularVideos() async throws -> Videos {
     
-        guard let url = URL(string: "\(baseURL)/popular?per_page=1") else {
+        guard let url = URL(string: "\(baseURL)/popular?per_page=10") else {
             throw HTTPRequestError.invalidURL
         }
 
