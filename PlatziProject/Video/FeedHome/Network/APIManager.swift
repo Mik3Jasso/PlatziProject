@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Network {
+class APIManager {
     
     let baseURL = "https://api.pexels.com/videos"
     let authToken = "0uRdtEt1OW33GuqX4IpTmp6sPLLoTcQYt043Zl3FTDqRh0qf4XNRcjFL"
