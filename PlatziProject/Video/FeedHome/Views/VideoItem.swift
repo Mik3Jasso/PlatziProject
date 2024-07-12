@@ -10,9 +10,10 @@ import SDWebImageSwiftUI
 
 struct VideoItem: View {
     let video: Video
+    @State var isSaved = false
     
     var body: some View {
-        VStack(alignment: .trailing) {
+        VStack {
             HStack {
                 WebImage(url: URL(string: video.image))
                     .resizable()
@@ -31,7 +32,7 @@ struct VideoItem: View {
                     Text("Width: \(video.width) px")
                         .font(.subheadline)
                         .italic()
-
+                    
                 }
             }
         }

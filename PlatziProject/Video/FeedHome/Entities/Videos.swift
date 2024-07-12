@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // To parse the JSON
 //
@@ -36,6 +37,8 @@ struct Video: Codable {
     let user: User
     let videoFiles: [VideoFile]
     let videoPictures: [VideoPicture]
+    
+    var isSaved = true
 
     enum CodingKeys: String, CodingKey {
         case id, width, height, url, image, duration, user
