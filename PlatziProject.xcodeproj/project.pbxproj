@@ -24,6 +24,9 @@
 		AD98EBC22C416F78006F96EE /* FavVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBC12C416F78006F96EE /* FavVideo.swift */; };
 		AD98EBC52C41789D006F96EE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AD98EBC42C41789D006F96EE /* RealmSwift */; };
 		AD98EBC72C418527006F96EE /* FavList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBC62C418527006F96EE /* FavList.swift */; };
+		AD98EBCA2C4189F2006F96EE /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = AD98EBC92C4189F2006F96EE /* Reachability */; };
+		AD98EBCC2C418A6C006F96EE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBCB2C418A6C006F96EE /* NetworkManager.swift */; };
+		AD98EBCE2C418C1E006F96EE /* NetworkAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBCD2C418C1E006F96EE /* NetworkAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,8 @@
 		AD98EBBA2C415E5D006F96EE /* VideoDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDescription.swift; sourceTree = "<group>"; };
 		AD98EBC12C416F78006F96EE /* FavVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavVideo.swift; sourceTree = "<group>"; };
 		AD98EBC62C418527006F96EE /* FavList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavList.swift; sourceTree = "<group>"; };
+		AD98EBCB2C418A6C006F96EE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		AD98EBCD2C418C1E006F96EE /* NetworkAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD98EBC52C41789D006F96EE /* RealmSwift in Frameworks */,
+				AD98EBCA2C4189F2006F96EE /* Reachability in Frameworks */,
 				AD98EBAA2C3F1DD4006F96EE /* SDWebImageSwiftUI in Frameworks */,
 				AD98EBB42C403188006F96EE /* VideoPlayer in Frameworks */,
 			);
@@ -168,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				AD98EBA62C3EFD7E006F96EE /* Network.swift */,
+				AD98EBCB2C418A6C006F96EE /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -180,6 +187,7 @@
 				AD98EB7A2C3EF03C006F96EE /* HomeFeedView.swift */,
 				AD98EBBA2C415E5D006F96EE /* VideoDescription.swift */,
 				AD98EBC62C418527006F96EE /* FavList.swift */,
+				AD98EBCD2C418C1E006F96EE /* NetworkAlert.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 				AD98EBA92C3F1DD4006F96EE /* SDWebImageSwiftUI */,
 				AD98EBB32C403188006F96EE /* VideoPlayer */,
 				AD98EBC42C41789D006F96EE /* RealmSwift */,
+				AD98EBC92C4189F2006F96EE /* Reachability */,
 			);
 			productName = PlatziProject;
 			productReference = AD98EB752C3EF03C006F96EE /* PlatziProject.app */;
@@ -291,6 +300,7 @@
 				AD98EBA82C3F1DD4006F96EE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				AD98EBB22C403188006F96EE /* XCRemoteSwiftPackageReference "VideoPlayer" */,
 				AD98EBC32C41789D006F96EE /* XCRemoteSwiftPackageReference "realm-swift" */,
+				AD98EBC82C4189F2006F96EE /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = AD98EB762C3EF03C006F96EE /* Products */;
 			projectDirPath = "";
@@ -334,8 +344,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD98EBCE2C418C1E006F96EE /* NetworkAlert.swift in Sources */,
 				AD98EBAC2C3F4F96006F96EE /* VideoItem.swift in Sources */,
 				AD98EBA52C3EFC2D006F96EE /* Videos.swift in Sources */,
+				AD98EBCC2C418A6C006F96EE /* NetworkManager.swift in Sources */,
 				AD98EBBB2C415E5D006F96EE /* VideoDescription.swift in Sources */,
 				AD98EB7B2C3EF03C006F96EE /* HomeFeedView.swift in Sources */,
 				AD98EBC72C418527006F96EE /* FavList.swift in Sources */,
@@ -698,6 +710,14 @@
 				kind = branch;
 			};
 		};
+		AD98EBC82C4189F2006F96EE /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -715,6 +735,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AD98EBC32C41789D006F96EE /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		AD98EBC92C4189F2006F96EE /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD98EBC82C4189F2006F96EE /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

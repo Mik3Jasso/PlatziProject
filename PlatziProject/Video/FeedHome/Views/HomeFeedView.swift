@@ -21,6 +21,7 @@ struct HomeFeedView: View {
 
     var body: some View {
         NavigationStack {
+            NetworkAlert()
             VStack {
                 TextField("", text: $searchText, prompt: Text("Search...").foregroundColor(.gray))
                     .bold()
@@ -71,7 +72,7 @@ struct HomeFeedView: View {
             NavigationLink {
                 FavList()
             } label: {
-                Text("Ver videos favoritos")
+                Text("See fav videos")
                 .frame(height: 60)
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                 .cornerRadius(16)

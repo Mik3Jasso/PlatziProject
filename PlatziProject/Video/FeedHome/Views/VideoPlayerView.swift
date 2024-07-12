@@ -25,6 +25,7 @@ struct VideoPlayerView : View {
     
     var body: some View {
         VStack {
+            NetworkAlert()
             VideoPlayer(url: URL(string: video?.link ?? "")!, play: $play, time: $time)
                 .onBufferChanged { progress in print("onBufferChanged \(progress)") }
                 .aspectRatio(1.78, contentMode: .fit)
