@@ -8,16 +8,20 @@
 import SwiftUI
 import VideoPlayer
 import CoreMedia
-
+import RealmSwift
 
 struct VideoPlayerView : View {
     let video: VideoFile?
     var totalDuration: Double = 0
     var videoSize: CGSize
-    
+
+    @State var isFav: Bool = false
     @State private var play: Bool = true
     @State private var time: CMTime = .zero
     @State private var stateText: String = ""
+    @Binding var reload: Bool
+    
+    @ObservedResults(FavVideo.self) var favVideos
     
     var body: some View {
         VStack {
@@ -27,7 +31,7 @@ struct VideoPlayerView : View {
                 .cornerRadius(16)
                 .shadow(color: Color.black.opacity(0.7), radius: 6, x: 0, y: 2)
                 .padding()
-                
+            
             HStack {
                 Button(action: {
                     self.play.toggle()
@@ -37,7 +41,6 @@ struct VideoPlayerView : View {
                 
                 Divider().frame(height: 20)
             }
-            
             HStack {
                 Button(action: {
                     self.time = CMTimeMakeWithSeconds(max(0, self.time.seconds - 5), preferredTimescale: self.time.timescale)
@@ -57,7 +60,30 @@ struct VideoPlayerView : View {
                     Image(systemName: "forward.fill")
                 })
             }
-                        
+            VideoDescription(videoFile: video)
+                .padding(.horizontal, 24)
+                .overlay {
+                    Button(action: {
+                        let favVideo = FavVideo()
+                        guard let id = video?.id else {
+                            return
+                        }
+                        favVideo.videoID = id
+                        $favVideos.append(favVideo)
+                        isFav = true
+                        reload = true
+                    }, label: {
+                        if !isFav {
+                            Image(systemName: "plus")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .clipShape(Circle())
+                                .padding(.leading, 200)
+                                .padding(.top, 130)
+                        }
+                    })
+                }
             Spacer()
         }
         .onDisappear { self.play = false }
@@ -74,8 +100,4 @@ struct VideoPlayerView : View {
         let s = Int(totalDuration.truncatingRemainder(dividingBy: 60))
         return String(format: "%d:%02d", arguments: [m, s])
     }
-}
-
-#Preview {
-    VideoPlayerView(video: nil, videoSize: CGSize(width: 100, height: 100))
 }

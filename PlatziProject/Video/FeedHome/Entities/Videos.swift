@@ -13,13 +13,15 @@ import SwiftUI
 //   let videos = try? JSONDecoder().decode(Videos.self, from: jsonData)
 
 import Foundation
+import RealmSwift
+
 
 // MARK: - Videos
 struct Videos: Codable {
     let page, perPage, totalResults: Int
     let url: String
     let videos: [Video]
-
+    
     enum CodingKeys: String, CodingKey {
         case page
         case perPage = "per_page"
@@ -38,8 +40,17 @@ struct Video: Codable {
     let videoFiles: [VideoFile]
     let videoPictures: [VideoPicture]
     
-    var isSaved = true
-
+    var isFav: Bool {
+        @ObservedResults(FavVideo.self) var favVideos
+        for video in self.videoFiles {
+            if (favVideos.first(where: {$0.videoID == video.id}) != nil) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id, width, height, url, image, duration, user
         case videoFiles = "video_files"
@@ -60,7 +71,7 @@ struct VideoFile: Codable {
     let quality, fileType: String
     let width, height: Int?
     let link: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id, quality
         case fileType = "file_type"

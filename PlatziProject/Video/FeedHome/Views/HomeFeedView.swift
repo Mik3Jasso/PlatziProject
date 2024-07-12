@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import RealmSwift
 
 struct HomeFeedView: View {
     @State var videos: [Video] = []
@@ -14,7 +15,10 @@ struct HomeFeedView: View {
     @State var sectionTitle = "Top Videos"
     @State var isFirstTime = true
     @State private var showingAlert = false
+    @State var reload = false
     
+    @ObservedResults(FavVideo.self) var favVideos
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -26,7 +30,7 @@ struct HomeFeedView: View {
                     .onSubmit {
                         Task{
                             do {
-                                let response = try await Network().fetchData(searchText)
+                                let response = try await Network().fetchVideos(searchText)
                                 print("Response: \(response)")
                                 videos = response.videos
                                 sectionTitle = searchText
@@ -39,14 +43,14 @@ struct HomeFeedView: View {
                     Section(sectionTitle) {
                         ForEach(videos, id: \.id) { video in
                             ZStack {
-                                NavigationLink(destination: VideoPlayerView(video: video.videoFiles.first(where: {$0.quality == "sd"}), totalDuration: Double(video.duration), videoSize: CGSize(width: video.width, height: video.height))) {
+                                NavigationLink(destination: VideoPlayerView(video: video.videoFiles.first(where: {$0.quality == "sd"}), totalDuration: Double(video.duration), videoSize: CGSize(width: video.width, height: video.height), isFav: video.isFav, reload: $reload)) {
                                 }.opacity(0)
                                 VideoItem(video: video)
                                 
                             }
                             .listRowBackground(Color.clear)
                             .overlay {
-                                if video.isSaved {
+                                if video.isFav {
                                     Image(systemName: "star.fill")
                                         .padding()
                                         .background(Color.blue)
@@ -64,20 +68,22 @@ struct HomeFeedView: View {
             }
             .listStyle(.plain)
             Spacer()
-            Button("Ver videos guardados") {
-                
+            NavigationLink {
+                FavList()
+            } label: {
+                Text("Ver videos favoritos")
+                .frame(height: 60)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                .cornerRadius(16)
+                .background(.blue)
+                .font(.title3)
+                .bold()
+                .foregroundColor(.white)
             }
-            .frame(height: 60)
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-            .cornerRadius(16)
-            .background(.blue)
-            .font(.title3)
-            .bold()
-            .foregroundColor(.white)
         }
         .background(.white)
         .onAppear() {
-            if isFirstTime {
+            if isFirstTime || reload {
                 Task{
                     do {
                         let response = try await Network().fetchPopularVideos()

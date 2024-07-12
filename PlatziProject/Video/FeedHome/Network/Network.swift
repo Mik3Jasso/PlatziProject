@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import RealmSwift
 
 class Network {
     
     let baseURL = "https://api.pexels.com/videos"
     let authToken = "0uRdtEt1OW33GuqX4IpTmp6sPLLoTcQYt043Zl3FTDqRh0qf4XNRcjFL"
 
-    func fetchData(_ value: String) async throws -> Videos {
+    func fetchVideos(_ value: String) async throws -> Videos {
         guard let url = URL(string: "\(baseURL)/search?query=\(value)&per_page=10") else {
             throw HTTPRequestError.invalidURL
         }
@@ -40,7 +41,7 @@ class Network {
         return video
     }
     
-    func performGETRequest<T>(url: URL) async throws -> T where T: Decodable {
+    private func performGETRequest<T>(url: URL) async throws -> T where T: Decodable {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("\(authToken)", forHTTPHeaderField: "Authorization")

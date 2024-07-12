@@ -20,6 +20,10 @@
 		AD98EBAC2C3F4F96006F96EE /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBAB2C3F4F96006F96EE /* VideoItem.swift */; };
 		AD98EBAF2C3F5466006F96EE /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBAE2C3F5466006F96EE /* VideoPlayerView.swift */; };
 		AD98EBB42C403188006F96EE /* VideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = AD98EBB32C403188006F96EE /* VideoPlayer */; };
+		AD98EBBB2C415E5D006F96EE /* VideoDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBBA2C415E5D006F96EE /* VideoDescription.swift */; };
+		AD98EBC22C416F78006F96EE /* FavVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBC12C416F78006F96EE /* FavVideo.swift */; };
+		AD98EBC52C41789D006F96EE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AD98EBC42C41789D006F96EE /* RealmSwift */; };
+		AD98EBC72C418527006F96EE /* FavList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98EBC62C418527006F96EE /* FavList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,9 @@
 		AD98EBA62C3EFD7E006F96EE /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		AD98EBAB2C3F4F96006F96EE /* VideoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoItem.swift; sourceTree = "<group>"; };
 		AD98EBAE2C3F5466006F96EE /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		AD98EBBA2C415E5D006F96EE /* VideoDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDescription.swift; sourceTree = "<group>"; };
+		AD98EBC12C416F78006F96EE /* FavVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavVideo.swift; sourceTree = "<group>"; };
+		AD98EBC62C418527006F96EE /* FavList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD98EBC52C41789D006F96EE /* RealmSwift in Frameworks */,
 				AD98EBAA2C3F1DD4006F96EE /* SDWebImageSwiftUI in Frameworks */,
 				AD98EBB42C403188006F96EE /* VideoPlayer in Frameworks */,
 			);
@@ -151,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				AD98EBA42C3EFC2D006F96EE /* Videos.swift */,
+				AD98EBC12C416F78006F96EE /* FavVideo.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -169,6 +178,8 @@
 				AD98EBAE2C3F5466006F96EE /* VideoPlayerView.swift */,
 				AD98EBAB2C3F4F96006F96EE /* VideoItem.swift */,
 				AD98EB7A2C3EF03C006F96EE /* HomeFeedView.swift */,
+				AD98EBBA2C415E5D006F96EE /* VideoDescription.swift */,
+				AD98EBC62C418527006F96EE /* FavList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +213,7 @@
 			packageProductDependencies = (
 				AD98EBA92C3F1DD4006F96EE /* SDWebImageSwiftUI */,
 				AD98EBB32C403188006F96EE /* VideoPlayer */,
+				AD98EBC42C41789D006F96EE /* RealmSwift */,
 			);
 			productName = PlatziProject;
 			productReference = AD98EB752C3EF03C006F96EE /* PlatziProject.app */;
@@ -278,6 +290,7 @@
 			packageReferences = (
 				AD98EBA82C3F1DD4006F96EE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				AD98EBB22C403188006F96EE /* XCRemoteSwiftPackageReference "VideoPlayer" */,
+				AD98EBC32C41789D006F96EE /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = AD98EB762C3EF03C006F96EE /* Products */;
 			projectDirPath = "";
@@ -323,8 +336,11 @@
 			files = (
 				AD98EBAC2C3F4F96006F96EE /* VideoItem.swift in Sources */,
 				AD98EBA52C3EFC2D006F96EE /* Videos.swift in Sources */,
+				AD98EBBB2C415E5D006F96EE /* VideoDescription.swift in Sources */,
 				AD98EB7B2C3EF03C006F96EE /* HomeFeedView.swift in Sources */,
+				AD98EBC72C418527006F96EE /* FavList.swift in Sources */,
 				AD98EBA72C3EFD7E006F96EE /* Network.swift in Sources */,
+				AD98EBC22C416F78006F96EE /* FavVideo.swift in Sources */,
 				AD98EB792C3EF03C006F96EE /* PlatziProjectApp.swift in Sources */,
 				AD98EBAF2C3F5466006F96EE /* VideoPlayerView.swift in Sources */,
 			);
@@ -674,6 +690,14 @@
 				minimumVersion = 1.2.4;
 			};
 		};
+		AD98EBC32C41789D006F96EE /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -686,6 +710,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AD98EBB22C403188006F96EE /* XCRemoteSwiftPackageReference "VideoPlayer" */;
 			productName = VideoPlayer;
+		};
+		AD98EBC42C41789D006F96EE /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD98EBC32C41789D006F96EE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
