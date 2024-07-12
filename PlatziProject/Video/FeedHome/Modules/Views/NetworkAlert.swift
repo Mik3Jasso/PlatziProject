@@ -9,20 +9,28 @@ import SwiftUI
 import Reachability
 
 struct NetworkAlert: View {
-
+    
     @ObservedObject private var networkManager = NetworkManager()
-
+    
+    
     var body: some View {
         VStack {
             if networkManager.isReachable {
-                Text("Connected to the Internet")
+                Image(systemName: "wifi")
+                    .resizable()
                     .foregroundColor(.green)
+                    .scaledToFit()
+                    .transition(.opacity)
+
             } else {
-                Text("No Internet Connection")
+                Image(systemName: "wifi.slash")
+                    .resizable()
                     .foregroundColor(.red)
+                    .scaledToFit()
+                    .transition(.opacity)
             }
         }
-        .frame(maxHeight: 60)
+        .frame(maxHeight: 15)
     }
 }
 

@@ -14,7 +14,7 @@ struct FavList: View {
 
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 List(favVideos, id: \.id) { video in
                     Text("id: \(video.videoID)")

@@ -10,6 +10,7 @@ import RealmSwift
 
 class FavVideo: Object, Identifiable {
     
+    // MARK: - FavVideo
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var videoID: Int
 

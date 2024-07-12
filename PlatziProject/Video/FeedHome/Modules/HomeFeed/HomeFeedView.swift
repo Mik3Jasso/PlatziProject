@@ -19,9 +19,12 @@ struct HomeFeedView: View {
     
     var body: some View {
         NavigationStack {
-            NetworkAlert()
-                .frame(maxHeight: 30)
-                .padding(10)
+            HStack {
+                Spacer()
+                NetworkAlert()
+                    .frame(maxHeight: 15)
+                    .padding(.trailing, 24)
+            }
             VStack {
                 TextField("", text: $searchText, prompt: Text("Search...").foregroundColor(.gray))
                     .bold()
@@ -31,11 +34,11 @@ struct HomeFeedView: View {
                         Task{
                             do {
                                 if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                                    let response = try await Network().fetchVideos(searchText)
+                                    let response = try await APIManager().fetchVideos(searchText)
                                     videos = response.videos
                                     sectionTitle = searchText
                                 } else {
-                                    let response = try await Network().fetchPopularVideos()
+                                    let response = try await APIManager().fetchPopularVideos()
                                     videos = response.videos
                                 }
                             } catch {
@@ -93,7 +96,7 @@ struct HomeFeedView: View {
         .onAppear() {
             Task{
                 do {
-                    let response = try await Network().fetchPopularVideos()
+                    let response = try await APIManager().fetchPopularVideos()
                     videos = response.videos
                 } catch {
                     showingAlert = true
