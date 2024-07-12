@@ -19,7 +19,6 @@ struct VideoPlayerView : View {
     @State private var play: Bool = true
     @State private var time: CMTime = .zero
     @State private var stateText: String = ""
-    @Binding var reload: Bool
     
     @ObservedResults(FavVideo.self) var favVideos
     
@@ -72,7 +71,6 @@ struct VideoPlayerView : View {
                         favVideo.videoID = id
                         $favVideos.append(favVideo)
                         isFav = true
-                        reload = true
                     }, label: {
                         if !isFav {
                             Image(systemName: "plus")

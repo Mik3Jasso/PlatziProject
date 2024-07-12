@@ -13,38 +13,48 @@ struct HomeFeedView: View {
     @State var videos: [Video] = []
     @State var searchText = ""
     @State var sectionTitle = "Top Videos"
-    @State var isFirstTime = true
     @State private var showingAlert = false
-    @State var reload = false
     
     @ObservedResults(FavVideo.self) var favVideos
-
+    
     var body: some View {
         NavigationStack {
             NetworkAlert()
+                .frame(maxHeight: 30)
+                .padding(10)
             VStack {
                 TextField("", text: $searchText, prompt: Text("Search...").foregroundColor(.gray))
                     .bold()
                     .font(.title2)
-                    .border(.gray, width: 1)
                     .padding(16)
                     .onSubmit {
                         Task{
                             do {
-                                let response = try await Network().fetchVideos(searchText)
-                                print("Response: \(response)")
-                                videos = response.videos
-                                sectionTitle = searchText
+                                if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                    let response = try await Network().fetchVideos(searchText)
+                                    videos = response.videos
+                                    sectionTitle = searchText
+                                } else {
+                                    let response = try await Network().fetchPopularVideos()
+                                    videos = response.videos
+                                }
                             } catch {
                                 showingAlert = true
                             }
                         }
                     }
-                List {
-                    Section(sectionTitle) {
+                if videos.count == 0{
+                    VStack {
+                        Image(systemName: "xmark.circle.fill")
+                            .frame(height: 20)
+                            .foregroundColor(.red)
+                        Text("Video(s) not found")
+                    }
+                }else {
+                    List {
                         ForEach(videos, id: \.id) { video in
                             ZStack {
-                                NavigationLink(destination: VideoPlayerView(video: video.videoFiles.first(where: {$0.quality == "sd"}), totalDuration: Double(video.duration), videoSize: CGSize(width: video.width, height: video.height), isFav: video.isFav, reload: $reload)) {
+                                NavigationLink(destination: VideoPlayerView(video: video.videoFiles.first(where: {$0.quality == "sd"}), totalDuration: Double(video.duration), videoSize: CGSize(width: video.width, height: video.height), isFav: video.isFav)) {
                                 }.opacity(0)
                                 VideoItem(video: video)
                                 
@@ -61,10 +71,8 @@ struct HomeFeedView: View {
                                         .padding(.top, 80)
                                 }
                             }
-                            
                         }
-                    }
-                    
+                    }.navigationTitle("Videos")
                 }
             }
             .listStyle(.plain)
@@ -73,27 +81,22 @@ struct HomeFeedView: View {
                 FavList()
             } label: {
                 Text("See fav videos")
-                .frame(height: 60)
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                .cornerRadius(16)
-                .background(.blue)
-                .font(.title3)
-                .bold()
-                .foregroundColor(.white)
+                    .frame(height: 60)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .background(.blue)
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(.white)
             }
         }
         .background(.white)
         .onAppear() {
-            if isFirstTime || reload {
-                Task{
-                    do {
-                        let response = try await Network().fetchPopularVideos()
-                        print("Response: \(response)")
-                        videos = response.videos
-                        isFirstTime = false
-                    } catch {
-                        print("Error")
-                    }
+            Task{
+                do {
+                    let response = try await Network().fetchPopularVideos()
+                    videos = response.videos
+                } catch {
+                    showingAlert = true
                 }
             }
         }
